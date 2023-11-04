@@ -5,48 +5,55 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:padding="16dp"
+  android:background="@color/blue_grey"
   tools:context=".MainActivity">
 
   <EditText
     android:id="@+id/editTextTask"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:hint="Add a new task"
+    android:hint="@string/add_a_new_task"
+    android:textColor="@color/black"
     android:minHeight="48dp"
      />
 
 
-  <LinearLayout
-    android:layout_below="@+id/editTextTask"
+  <RelativeLayout
     android:id="@+id/linearButtonLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    >
+    android:layout_below="@+id/editTextTask"
+    android:orientation="horizontal">
 
     <Button
       android:id="@+id/buttonRemoveCompleted"
-      style="@style/Widget.AppCompat.Button.Small"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-
+      android:backgroundTint="@color/teal"
+      android:textColor="@color/white"
+      android:layout_alignParentStart="true"
       android:text="@string/clear_finished" />
 
     <Button
       android:id="@+id/buttonAddTask"
-      style="@style/Widget.AppCompat.Button.Small"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="@string/add_task" />
-  </LinearLayout>
+      android:backgroundTint="@color/teal"
+      android:text="@string/add_task"
+      android:layout_alignParentEnd="true"
+      android:textColor="@color/white" />
+  </RelativeLayout>
 
   <androidx.recyclerview.widget.RecyclerView
 
     android:id="@+id/recyclerViewTasks"
-    android:layout_width="374dp"
-    android:layout_height="469dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:layout_below="@id/linearButtonLayout"
     android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:background="@color/white"
     tools:ignore="NotSibling" />
 
 

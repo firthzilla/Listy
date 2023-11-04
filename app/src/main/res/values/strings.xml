@@ -2,4 +2,5 @@
     <string name="app_name">Listy</string>
   <string name="add_task">Add Task</string>
   <string name="clear_finished">Clear Finished</string>
+    <string name="add_a_new_task">Add a new task</string>
 </resources>
