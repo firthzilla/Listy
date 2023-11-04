@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:padding="16dp"
+  tools:context=".MainActivity">
+
+  <EditText
+    android:id="@+id/editTextTask"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Add a new task"
+    android:minHeight="48dp"
+     />
+
+
+  <LinearLayout
+    android:layout_below="@+id/editTextTask"
+    android:id="@+id/linearButtonLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    >
+
+    <Button
+      android:id="@+id/buttonRemoveCompleted"
+      style="@style/Widget.AppCompat.Button.Small"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+
+      android:text="@string/clear_finished" />
+
+    <Button
+      android:id="@+id/buttonAddTask"
+      style="@style/Widget.AppCompat.Button.Small"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/add_task" />
+  </LinearLayout>
+
+  <androidx.recyclerview.widget.RecyclerView
+
+    android:id="@+id/recyclerViewTasks"
+    android:layout_width="374dp"
+    android:layout_height="469dp"
+    android:layout_below="@id/linearButtonLayout"
+    android:layout_marginTop="5dp"
+    tools:ignore="NotSibling" />
+
+
+
+
+</RelativeLayout>
+
