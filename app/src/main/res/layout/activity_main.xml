@@ -10,7 +10,7 @@
 
   <EditText
     android:id="@+id/editTextTask"
-    android:background="@color/white"
+    android:background="@drawable/boarder"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:hint="@string/add_a_new_task"
@@ -53,11 +53,7 @@
     android:layout_below="@id/linearButtonLayout"
     android:layout_marginTop="5dp"
     android:layout_marginBottom="5dp"
-    android:background="@color/white"
+    android:background="@drawable/boarder"
     tools:ignore="NotSibling" />
-
-
-
-
 </RelativeLayout>
 
