@@ -10,9 +10,6 @@ public class Task {
     this.id = id;
     this.title = title;
     this.isCompleted = false;
-
-
-
   }
 
   public String getTitle() {
