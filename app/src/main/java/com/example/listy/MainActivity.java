@@ -1,18 +1,20 @@
 package com.example.listy;
 
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-
+import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+import android.content.SharedPreferences;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 public class MainActivity extends AppCompatActivity {
   private EditText editTextTask;
@@ -30,36 +32,44 @@ public class MainActivity extends AppCompatActivity {
     buttonAddTask = findViewById(R.id.buttonAddTask);
     recyclerViewTasks = findViewById(R.id.recyclerViewTasks);
     Button buttonRemoveCompleted = findViewById(R.id.buttonRemoveCompleted);
-    taskList = new ArrayList<>();
+    loadTasksFromSharedPreferences();
     taskAdapter = new TaskAdapter(taskList);
-
     recyclerViewTasks.setLayoutManager(new LinearLayoutManager(this));
     recyclerViewTasks.setAdapter(taskAdapter);
-
-    buttonAddTask.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        addTask();
-      }
-    });
-    buttonRemoveCompleted.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        removeCompletedTasks();
-      }
-    });
+    buttonAddTask.setOnClickListener(v -> addTask());
+    buttonRemoveCompleted.setOnClickListener(v -> removeCompletedTasks());
 
   }
+  private void loadTasksFromSharedPreferences() {
+    SharedPreferences sharedPreferences = getSharedPreferences("MyTasks", MODE_PRIVATE);
+
+    Gson gson = new Gson();
+    String tasksJson = sharedPreferences.getString("taskList", "");
+
+    Type taskListType = new TypeToken<List<Task>>() {}.getType();
+    taskList = gson.fromJson(tasksJson, taskListType);
+
+    if (taskList == null) {
+      taskList = new ArrayList<>();
+    }
+  }
+  private void saveTasksToSharedPreferences() {
+    SharedPreferences sharedPreferences = getSharedPreferences("MyTasks", MODE_PRIVATE);
+    SharedPreferences.Editor editor = sharedPreferences.edit();
+
+    Gson gson = new Gson();
+    String tasksJson = gson.toJson(taskList);
+
+    editor.putString("taskList", tasksJson);
+    editor.apply();
+  }
+
 
   private void removeCompletedTasks() {
-    Iterator<Task> iterator = taskList.iterator();
-    while (iterator.hasNext()) {
-      Task task = iterator.next();
-      if (task.isCompleted()) {
-        iterator.remove();
-      }
-    }
+    taskList.removeIf(Task::isCompleted);
+    saveTasksToSharedPreferences();
     taskAdapter.notifyDataSetChanged();
+
   }
 
   private void addTask() {
@@ -67,12 +77,12 @@ public class MainActivity extends AppCompatActivity {
     if (!taskTitle.isEmpty()) {
       Task newTask = new Task(taskList.size() + 1, taskTitle);
       taskList.add(newTask);
+      saveTasksToSharedPreferences();
       taskAdapter.notifyDataSetChanged();
       editTextTask.setText("");
+
     }
   }
-
-
 }
 
 
