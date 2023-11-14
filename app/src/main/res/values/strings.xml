@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">Listy</string>
+  <string name="app_name">Listy</string>
   <string name="add_task">Add Task</string>
   <string name="clear_finished">Clear Finished</string>
-    <string name="add_a_new_task">Add a new task</string>
+  <string name="add_a_new_task">Add a new task</string>
+  <string name="don_t_have_an_account_sign_up">Don\'t have an account? Sign up.</string>
 </resources>
