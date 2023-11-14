@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "984406147490",
+    "project_id": "listy-a9569",
+    "storage_bucket": "listy-a9569.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:984406147490:android:7c21d71ba2a97ea8ff72fb",
+        "android_client_info": {
+          "package_name": "com.example.listy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "984406147490-9kenmg73ese9jsbb4k9167rdc9aj3nm9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbLSPG4FPENQV2iS5fUO3p9amwaZZ7AFA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "984406147490-9kenmg73ese9jsbb4k9167rdc9aj3nm9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
