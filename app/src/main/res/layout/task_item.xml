@@ -1,22 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
-  android:orientation="horizontal"
-
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:orientation="vertical"
   android:padding="8dp">
 
-  <CheckBox
-    android:id="@+id/checkBoxTask"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content" />
-
-  <TextView
-    android:id="@+id/textViewTitle"
-    android:layout_width="wrap_content"
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:textSize="18sp"
-    android:layout_gravity="center_vertical" />
+    android:orientation="horizontal">
+
+    <CheckBox
+      android:id="@+id/checkBoxTask"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+      android:id="@+id/textViewTitle"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:layout_constraintStart_toEndOf="@+id/checkBoxTask"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintBottom_toBottomOf="parent"
+      android:layout_marginStart="8dp"
+      android:layout_marginEnd="8dp" />
+
+    <!-- Button for expanding subtasks -->
+    <ImageButton
+      android:id="@+id/buttonExpand"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:src="@drawable/ic_dropdown"
+      android:background="?attr/selectableItemBackgroundBorderless"
+      android:contentDescription="@string/expand_subtasks"
+      android:padding="8dp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintBottom_toBottomOf="parent"
+      android:layout_marginEnd="8dp"
+      />
+
+    <ImageButton
+      android:id="@+id/editTask"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_vertical"
+      android:src="@drawable/ic_edit"
+      android:layout_marginStart="8dp"
+      android:background="?attr/selectableItemBackgroundBorderless"
+      android:contentDescription="@string/edit_task"
+      android:padding="8dp"
+      app:layout_constraintEnd_toStartOf="@id/buttonExpand"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintBottom_toBottomOf="parent"
+      android:layout_marginEnd="8dp"
+      />
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+
+  <!-- Subtasks container (Initially hidden) -->
+  <LinearLayout
+    android:id="@+id/layoutSubtasks"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingStart="32dp"
+    android:visibility="gone">
+    <!-- Due Date TextView -->
+    <TextView
+      android:id="@+id/textViewDueDate"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/due_date_task_item"
+      android:textColor="@android:color/black"
+      android:textStyle="bold"
+      android:paddingTop="8dp"
+      android:paddingBottom="4dp"/>
+
+    <!-- Reminder TextView -->
+    <TextView
+      android:id="@+id/textViewReminder"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/reminder_task_item"
+      android:textColor="@android:color/black"
+      android:textStyle="bold"
+      android:paddingBottom="8dp"/>
+
+    <!-- Add your subtasks layout here -->
+    <CheckBox
+      android:id="@+id/subCheckBoxTask"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content" />
+
+    <TextView
+      android:id="@+id/subTextViewTitle"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textSize="18sp"
+      android:layout_gravity="center_vertical" />
+    <ImageButton
+      android:id="@+id/buttonCollapse"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:src="@drawable/ic_dropdown_up"
+      android:background="?attr/selectableItemBackgroundBorderless"
+      android:contentDescription="@string/expand_subtasks"
+      android:padding="8dp"
+      android:layout_gravity="center_vertical"
+      android:layout_marginStart="8dp"/>
+
+
+  </LinearLayout>
 
 </LinearLayout>
+

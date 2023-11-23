@@ -6,7 +6,6 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder>{
@@ -18,7 +17,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
   @Override
   public TaskViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
-    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.task_item, parent, false);
+    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.quick_task_item, parent, false);
     return new TaskViewHolder(view);
   }
 

@@ -9,9 +9,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.lang.reflect.Type;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+
 import android.content.SharedPreferences;
+import android.widget.TextView;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -26,18 +32,27 @@ public class HomeActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
+    setContentView(R.layout.home_activity);
+    Toolbar toolbar = findViewById(R.id.toolbar);
+    setSupportActionBar(toolbar);
+
+    TextView dateTextView = findViewById(R.id.dateTextView);
+
+    // Set the current date dynamically
+    SimpleDateFormat sdf = new SimpleDateFormat("EEE, MMM d, yyyy", Locale.getDefault());
+    String currentDate = sdf.format(new Date());
+    dateTextView.setText(currentDate);
 
     editTextTask = findViewById(R.id.editTextTask);
     buttonAddTask = findViewById(R.id.buttonAddTask);
     recyclerViewTasks = findViewById(R.id.recyclerViewTasks);
-    Button buttonRemoveCompleted = findViewById(R.id.buttonRemoveCompleted);
+    //Button buttonRemoveCompleted = findViewById(R.id.buttonRemoveCompleted);
     loadTasksFromSharedPreferences();
     taskAdapter = new TaskAdapter(taskList);
     recyclerViewTasks.setLayoutManager(new LinearLayoutManager(this));
     recyclerViewTasks.setAdapter(taskAdapter);
     buttonAddTask.setOnClickListener(v -> addTask());
-    buttonRemoveCompleted.setOnClickListener(v -> removeCompletedTasks());
+    //buttonRemoveCompleted.setOnClickListener(v -> removeCompletedTasks());
 
   }
   private void loadTasksFromSharedPreferences() {
