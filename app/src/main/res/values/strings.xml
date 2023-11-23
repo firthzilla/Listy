@@ -22,4 +22,7 @@
     <string name="due_date_task_item">Due Date:</string>
   <string name="reminder_task_item">Reminder:</string>
   <string name="edit_task">edit task</string>
+  <!-- to toggle the open close button of the navigation drawer -->
+  <string name="nav_open">Open</string>
+  <string name="nav_close">Close</string>
 </resources>

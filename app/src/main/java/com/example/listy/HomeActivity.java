@@ -1,12 +1,25 @@
 package com.example.listy;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.navigation.NavigationView;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
@@ -15,13 +28,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import android.content.SharedPreferences;
-import android.widget.TextView;
-import androidx.appcompat.widget.Toolbar;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
 public class HomeActivity extends AppCompatActivity {
   private EditText editTextTask;
   private Button buttonAddTask;
@@ -29,12 +35,38 @@ public class HomeActivity extends AppCompatActivity {
   private TaskAdapter taskAdapter;
   private List<Task> taskList;
 
+  private DrawerLayout drawerLayout;
+  private ActionBarDrawerToggle actionBarDrawerToggle;
+  private NavigationView navigationView;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.home_activity);
+
     Toolbar toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
+
+    drawerLayout = findViewById(R.id.drawerLayout);
+    actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
+    drawerLayout.addDrawerListener(actionBarDrawerToggle);
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    actionBarDrawerToggle.syncState();
+
+    // Set click listener for the toggle button
+    actionBarDrawerToggle.setToolbarNavigationClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+          drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+          drawerLayout.openDrawer(GravityCompat.START);
+        }
+      }
+    });
+
+    navigationView = findViewById(R.id.navigationView);
+
 
     TextView dateTextView = findViewById(R.id.dateTextView);
 
@@ -55,6 +87,16 @@ public class HomeActivity extends AppCompatActivity {
     //buttonRemoveCompleted.setOnClickListener(v -> removeCompletedTasks());
 
   }
+
+  @Override
+  public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+    if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
+      return true;
+    }
+    return super.onOptionsItemSelected(item);
+  }
+
   private void loadTasksFromSharedPreferences() {
     SharedPreferences sharedPreferences = getSharedPreferences("MyTasks", MODE_PRIVATE);
 
