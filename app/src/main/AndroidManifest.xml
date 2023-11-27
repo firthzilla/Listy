@@ -28,13 +28,19 @@
         <activity
             android:name=".HomeActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"
+            android:windowSoftInputMode="stateHidden"
           >
         </activity>
         <activity
           android:name=".LoginActivity"
           android:exported="false">
         </activity>
+      <activity
+        android:name=".AddTaskActivity"
+        android:exported="false"
+        >
+      </activity>
+
     </application>
 
 </manifest>

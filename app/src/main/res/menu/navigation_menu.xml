@@ -2,17 +2,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools"
   tools:ignore="HardcodedText">
-
-  <item
-    android:id="@+id/nav_account"
-    android:title="My Account" />
-
-  <item
-    android:id="@+id/nav_settings"
-    android:title="Settings" />
-
-  <item
-    android:id="@+id/nav_logout"
-    android:title="Logout" />
+  <group
+    android:id="@+id/group_1"
+    android:checkableBehavior="none">
+    <item
+      android:id="@+id/nav_home"
+      android:title="Home" />
+  </group>
+  <group
+    android:id="@+id/group_2"
+    android:checkableBehavior="single">
+    <item
+      android:id="@+id/nav_create_new_list"
+      android:title="New List"
+      />
+  </group>
 
 </menu>
