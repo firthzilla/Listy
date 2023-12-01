@@ -16,7 +16,7 @@ public class AddTaskActivity extends AppCompatActivity {
   private Button dueDateButton;
   private Button reminderButton;
   private Button repeatButton;
-  private FloatingActionButton fabButton;
+  private FloatingActionButton addTaskButton;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -30,15 +30,19 @@ public class AddTaskActivity extends AppCompatActivity {
     dueDateButton = findViewById(R.id.dueDatePicker);
     reminderButton = findViewById(R.id.reminderDatePicker);
     repeatButton = findViewById(R.id.repeatSpinner);
-    fabButton = findViewById(R.id.fabButton);
+    addTaskButton = findViewById(R.id.addTaskButton);
 
-    // Set onClick listeners for buttons
-    addToListButton.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        // Handle click for "Add to List" button
+    // Set click listener for "Add Task" button
+    //this is the code that will be executed when the button is clicked it needs to send the data to the database then close the activity
+/*    addTaskButton.setOnClickListener(v -> {
+      String taskTitle = editTextTask.getText().toString().trim();
+      // Create a DetailedTask or any class implementing TaskItem interface
+      if (!taskTitle.isEmpty()) {
+        DetailedTask newDetailedTask = new DetailedTask(taskList.size() + 1, taskTitle, *//* other parameters *//*);
+        addTask(newDetailedTask);
+        editTextTask.setText(""); // Clear the edit text after adding task
       }
-    });
+    });*/
 
     dueDateButton.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -58,13 +62,6 @@ public class AddTaskActivity extends AppCompatActivity {
       @Override
       public void onClick(View v) {
         // Handle click for "Repeat" button
-      }
-    });
-
-    fabButton.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        // Handle click for Floating Action Button (Fab)
       }
     });
   }

@@ -1,29 +1,36 @@
 package com.example.listy;
 
-public class DetailedTask {
-  private int id;
-  private String title;
+import java.util.ArrayList;
+import java.util.List;
+
+public class DetailedTask extends Task implements TaskItem {
+
   private String notes;
   private String dueDate;
   private String reminder;
-  private boolean isCompleted;
+  private List<SubTask> subTasks;
 
-  public DetailedTask(int id, String title, String notes, String dueDate, String reminder, boolean isCompleted){
-    this.id = id;
-    this.title = title;
-    this.notes = notes;
-    this.dueDate = dueDate;
-    this.reminder = reminder;
-    this.isCompleted = isCompleted;
-
-  }
-
+  @Override
   public int getId() {
     return id;
   }
-  public String getTitle() {
-    return  title;
+
+  @Override
+  public void setId(int id) {
+    this.id = id;
   }
+
+  public int id;
+
+  public DetailedTask(int id, String title, boolean isCompleted, String notes, String dueDate, String reminder){
+    super(id, title, isCompleted);
+    this.notes = notes;
+    this.dueDate = dueDate;
+    this.reminder = reminder;
+    this.subTasks = new ArrayList<>();
+  }
+
+
   public String getNotes() {
     return notes;
   }
@@ -31,20 +38,11 @@ public class DetailedTask {
     return  dueDate;
   }
 
-  public boolean isCompleted() {
-    return isCompleted;
-  }
-
   public String getReminder() {
     return reminder;
   }
 
-  public void setId(int id) {
-    this.id = id;
-  }
-  public void setTitle(String title) {
-    this.title = title;
-  }
+
   public void setNotes(String notes){
     this.notes = notes;
   }
@@ -54,7 +52,37 @@ public class DetailedTask {
   public void setReminder(String reminder){
     this.reminder = reminder;
   }
-  public void setCompleted(boolean isCompleted) {
-    this.isCompleted = isCompleted;
+  public List<SubTask> getSubTasks() {
+    return subTasks;
+  }
+
+  public void addSubTask(SubTask subTask) {
+    subTasks.add(subTask);
+  }
+
+  public void removeSubTask(SubTask subTask) {
+    subTasks.remove(subTask);
+  }
+}
+class SubTask {
+  private String title;
+  private boolean isCompleted;
+
+  public SubTask(String title) {
+    this.title = title;
+    this.isCompleted = false;
+  }
+  public String getTitle() {
+    return title;
+  }
+  public boolean isCompleted() {
+    return isCompleted;
+  }
+  public void setCompleted(boolean completed) {
+    isCompleted = completed;
+  }
+
+  public void setTitle(String title) {
+    this.title = title;
   }
 }

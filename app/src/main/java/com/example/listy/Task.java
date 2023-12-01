@@ -1,12 +1,12 @@
 package com.example.listy;
 
-public class Task {
+public class Task implements TaskItem{
   private int id;
   private String title;
   private boolean isCompleted;
 
 
-  public Task(int id, String title){
+  public Task(int id, String title, boolean isCompleted) {
     this.id = id;
     this.title = title;
     this.isCompleted = false;
